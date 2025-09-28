@@ -1,0 +1,131 @@
+/**
+ * Стили для компонента индикатора загрузки
+ * Анимированный спиннер с различными размерами и цветами
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Базовый спиннер */
+.spinner {
+  border: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Размеры спиннера */
+.spinnerSmall {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+.spinnerMedium {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
+}
+
+.spinnerLarge {
+  width: 60px;
+  height: 60px;
+  border-width: 4px;
+}
+
+/* Цвета спиннера */
+.spinnerPrimary {
+  border-color: #007bff #f3f3f3 #f3f3f3 #007bff;
+}
+
+.spinnerSecondary {
+  border-color: #6c757d #f3f3f3 #f3f3f3 #6c757d;
+}
+
+.spinnerWhite {
+  border-color: #fff rgb(255 255 255 / 30%) rgb(255 255 255 / 30%) #fff;
+}
+
+/* Анимация вращения */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Текст под спиннером */
+.text {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+  text-align: center;
+  line-height: 1.4;
+
+  @media (width <= 480px) {
+    font-size: 0.8rem;
+  }
+}
+
+/* Модификаторы для разных контекстов */
+
+/* Для темного фона */
+.containerDark {
+  .text {
+    color: #ccc;
+  }
+}
+
+/* Для inline отображения */
+.containerInline {
+  flex-direction: row;
+  gap: 8px;
+
+  .text {
+    font-size: 0.8rem;
+  }
+}
+
+/* Для полноэкранной загрузки */
+.containerFullscreen {
+  position: fixed;
+  inset: 0;
+  background: rgb(255 255 255 / 90%);
+  z-index: 9999;
+  gap: 16px;
+}
+
+/* Улучшения для доступности */
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+    border: 2px solid #007bff;
+    border-right-color: transparent;
+  }
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  .container:not(.containerDark) {
+    .text {
+      color: #ccc;
+    }
+
+    .spinnerPrimary,
+    .spinnerSecondary {
+      border-right-color: #404040;
+      border-bottom-color: #404040;
+    }
+  }
+
+  .containerFullscreen {
+    background: rgb(45 45 45 / 90%);
+  }
+}

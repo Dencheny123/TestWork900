@@ -1,0 +1,371 @@
+/**
+ * Стили для карточки продукта
+ * Минималистичный дизайн с белым фоном и синими акцентами
+ */
+
+.card {
+  border-radius: 12px;
+  border: 2px solid #000;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgb(0 123 255 / 15%);
+    border-color: #007bff;
+  }
+
+  @media (width <= 768px) {
+    border-radius: 8px;
+  }
+}
+
+/* Контейнер изображения */
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Сохраняем квадратное соотношение сторон */
+  overflow: hidden;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Скелетон изображения */
+.imageSkeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  z-index: 1;
+}
+
+.skeletonShimmer {
+  width: 100%;
+  height: 100%;
+  background: inherit;
+}
+
+/* Обертка изображения */
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: opacity 0.3s ease;
+}
+
+.imageWrapper.imageVisible {
+  opacity: 1;
+}
+
+.imageWrapper.imageHidden {
+  opacity: 0;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+
+  .card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+/* Бейдж скидки */
+.discountBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #dc3545;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 1;
+
+  @media (width <= 480px) {
+    top: 8px;
+    right: 8px;
+    padding: 3px 6px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Контент карточки */
+.content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @media (width <= 768px) {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  @media (width <= 480px) {
+    padding: 12px;
+    gap: 8px;
+  }
+}
+
+/* Категория */
+.category {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  background-color: #646464;
+  border-radius: 8px;
+  display: inline-block;
+
+  @media (width <= 480px) {
+    font-size: 0.8rem;
+  }
+}
+
+/* Название продукта */
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-clamp: 2;
+
+  @media (width <= 768px) {
+    font-size: 1rem;
+  }
+
+  @media (width <= 480px) {
+    font-size: 0.95rem;
+  }
+}
+
+/* Бренд */
+.brand {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+  margin: 0;
+
+  @media (width <= 480px) {
+    font-size: 0.85rem;
+  }
+}
+
+/* Описание */
+.description {
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+
+  @media (width <= 480px) {
+    font-size: 0.8rem;
+    -webkit-line-clamp: 2;
+  }
+}
+
+/* Рейтинг */
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.ratingStars {
+  color: #ffc107;
+  font-size: 1rem;
+  letter-spacing: 1px;
+
+  @media (width <= 480px) {
+    font-size: 0.9rem;
+  }
+}
+
+.ratingValue {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 500;
+
+  @media (width <= 480px) {
+    font-size: 0.8rem;
+  }
+}
+
+/* Футер с ценой и кнопкой */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  gap: 12px;
+
+  @media (width <= 480px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 12px;
+  }
+}
+
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+
+  @media (width <= 768px) {
+    font-size: 1.125rem;
+  }
+
+  @media (width <= 480px) {
+    font-size: 1rem;
+  }
+}
+
+.originalPrice {
+  font-size: 0.875rem;
+  color: #999;
+  text-decoration: line-through;
+  font-weight: 500;
+
+  @media (width <= 480px) {
+    font-size: 0.8rem;
+  }
+}
+
+/* Кнопка добавления в корзину */
+.addButton {
+  background: #007bff;
+  color: #000;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  min-width: 100px;
+
+  &:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  @media (width <= 480px) {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Анимации */
+.card {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Анимация shimmer для скелетона */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Улучшения для доступности */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .image,
+  .addButton {
+    transition: none;
+    animation: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
+
+/* Темная тема (если понадобится в будущем) */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: #2d2d2d;
+    border-color: #404040;
+  }
+
+  .imageContainer {
+    background-color: #404040;
+  }
+
+  .title {
+    color: #fff;
+  }
+
+  .brand,
+  .description,
+  .ratingValue {
+    color: #ccc;
+  }
+
+  .price {
+    color: #fff;
+  }
+}

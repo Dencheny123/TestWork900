@@ -1,0 +1,407 @@
+/**
+ * Стили для страницы авторизации
+ * Минималистичный дизайн с фокусом на usability
+ */
+
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  @media (width <= 768px) {
+    padding: 16px;
+  }
+
+  @media (width <= 480px) {
+    padding: 12px;
+  }
+}
+
+.container {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
+  padding: 48px;
+  max-width: 440px;
+  width: 100%;
+  animation: slideUp 0.6s ease-out;
+
+  @media (width <= 768px) {
+    padding: 32px;
+    max-width: 400px;
+  }
+
+  @media (width <= 480px) {
+    padding: 24px;
+    border-radius: 12px;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Заголовок страницы */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+
+  @media (width <= 768px) {
+    margin-bottom: 32px;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  line-height: 1.2;
+
+  @media (width <= 768px) {
+    font-size: 1.75rem;
+  }
+
+  @media (width <= 480px) {
+    font-size: 1.5rem;
+  }
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+
+  @media (width <= 480px) {
+    font-size: 0.9rem;
+  }
+}
+
+/* Форма */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media (width <= 480px) {
+    gap: 20px;
+  }
+}
+
+/* Группа формы */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+
+  @media (width <= 480px) {
+    font-size: 0.85rem;
+  }
+}
+
+.input {
+  padding: 14px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: #fff;
+
+  &:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgb(0 123 255 / 10%);
+  }
+
+  &:hover {
+    border-color: #b0b7c3;
+  }
+
+  &::placeholder {
+    color: #999;
+  }
+
+  @media (width <= 480px) {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+.inputError {
+  border-color: #dc3545;
+
+  &:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 3px rgb(220 53 69 / 10%);
+  }
+}
+
+/* Сообщения об ошибках */
+.errorMessage {
+  font-size: 0.8rem;
+  color: #dc3545;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  &::before {
+    content: '⚠';
+    font-size: 0.7rem;
+  }
+}
+
+/* Ошибка авторизации */
+.authError {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  animation: shake 0.5s ease-in-out;
+
+  @media (width <= 480px) {
+    padding: 10px 12px;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.authErrorIcon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.authErrorMessage {
+  font-size: 0.875rem;
+  color: #721c24;
+  line-height: 1.4;
+  flex: 1;
+}
+
+/* Кнопка отправки */
+.submitButton {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+
+  &:hover:not(:disabled) {
+    background: #0056b3;
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  @media (width <= 480px) {
+    padding: 14px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Спиннер загрузки */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentcolor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Демо информация */
+.demoInfo {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 24px;
+
+  @media (width <= 480px) {
+    padding: 12px;
+    margin-top: 20px;
+  }
+}
+
+.demoTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+
+  @media (width <= 480px) {
+    font-size: 0.85rem;
+  }
+}
+
+.demoText {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin: 0 0 8px;
+  line-height: 1.4;
+
+  @media (width <= 480px) {
+    font-size: 0.8rem;
+  }
+}
+
+.demoNote {
+  font-size: 0.8rem;
+  color: #adb5bd;
+  font-style: italic;
+  margin: 0;
+
+  @media (width <= 480px) {
+    font-size: 0.75rem;
+  }
+}
+
+/* Футер с ссылкой */
+.footer {
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e9ecef;
+
+  @media (width <= 480px) {
+    margin-top: 24px;
+    padding-top: 20px;
+  }
+}
+
+.homeLink {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  @media (width <= 480px) {
+    font-size: 0.85rem;
+  }
+}
+
+/* Улучшения для доступности */
+@media (prefers-reduced-motion: reduce) {
+  .container,
+  .authError,
+  .submitButton {
+    animation: none;
+  }
+
+  .submitButton:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* Темная тема (если понадобится в будущем) */
+@media (prefers-color-scheme: dark) {
+  .container {
+    background: #2d2d2d;
+    color: #fff;
+  }
+
+  .title {
+    color: #fff;
+  }
+
+  .subtitle {
+    color: #ccc;
+  }
+
+  .label {
+    color: #fff;
+  }
+
+  .input {
+    background: #404040;
+    border-color: #555;
+    color: #fff;
+
+    &::placeholder {
+      color: #888;
+    }
+
+    &:focus {
+      border-color: #007bff;
+    }
+  }
+
+  .demoInfo {
+    background: #404040;
+    border-color: #555;
+  }
+
+  .demoTitle,
+  .demoText {
+    color: #ccc;
+  }
+}

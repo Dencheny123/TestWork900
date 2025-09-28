@@ -1,0 +1,86 @@
+/**
+ * Стили для компонента Footer
+ * Минималистичный дизайн с белым фоном и серыми акцентами
+ */
+
+.footer {
+  background-color: #1a1a1a;
+  border-top: 2px solid #790000;
+  margin-top: auto;
+  padding: 2rem 0;
+
+  @media (width <= 768px) {
+    padding: 1.5rem 0;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (width <= 768px) {
+    padding: 0 0.5rem;
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  @media (width <= 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}
+
+.copyright {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @media (width <= 768px) {
+    align-items: center;
+  }
+}
+
+.year {
+  font-size: 0.875rem;
+  color: #dbeafe;
+  font-weight: 500;
+}
+
+.userStatus {
+  font-size: 0.875rem;
+  color: #001a52;
+  background-color: #dbeafe;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  display: inline-block;
+
+  @media (width <= 768px) {
+    font-size: 0.8125rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
+
+.info {
+  display: flex;
+  align-items: center;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: #fff;
+  margin: 0;
+  line-height: 1.5;
+
+  @media (width <= 768px) {
+    font-size: 0.8125rem;
+  }
+}

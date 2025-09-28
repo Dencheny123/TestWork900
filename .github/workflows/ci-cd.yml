@@ -1,0 +1,121 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  NODE_VERSION: '18.x'
+
+jobs:
+  # Проверка качества кода
+  lint-and-test:
+    name: Lint, Test and Build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+        cache: 'npm'
+        cache-dependency-path: web/package-lock.json
+
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run TypeScript type check
+      run: npm run type-check
+
+    - name: Run ESLint
+      run: npm run lint
+
+    - name: Run Stylelint
+      run: npm run stylelint
+
+    - name: Run Prettier check
+      run: npm run format:check
+
+    - name: Run tests
+      run: npm run test:ci
+
+    - name: Build application
+      run: npm run build
+
+    - name: Run Storybook build
+      run: npm run build-storybook
+
+  deploy:
+    name: Deploy to Vercel
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: web/package-lock.json
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build application
+      run: npm run build
+
+    - name: Deploy to Vercel
+      uses: amondnet/vercel-action@v25
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        working-directory: ./web
+        vercel-args: '--prod'
+
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: [lint-and-test, deploy]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Get version from package.json
+      id: package_version
+      uses: martinbeentjes/npm-get-version-action@main
+      with:
+        path: web
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.package_version.outputs.current-version }}
+        release_name: Release v${{ steps.package_version.outputs.current-version }}
+        body: |
+          Автоматический релиз приложения
+          
+          Изменения:
+          - Обновление функционала
+          - Исправление ошибок
+        draft: false
+        prerelease: false

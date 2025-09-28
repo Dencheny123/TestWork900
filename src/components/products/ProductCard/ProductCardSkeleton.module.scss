@@ -1,0 +1,287 @@
+/**
+ * Стили для скелетона карточки продукта
+ * Анимированные плейсхолдеры для плавного UX при загрузке
+ */
+
+.skeletonCard {
+  border-radius: 12px;
+  border: 2px solid #f0f0f0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+  animation: pulse 2s infinite ease-in-out;
+
+  @media (width <= 768px) {
+    border-radius: 8px;
+  }
+}
+
+/* Контейнер изображения скелетона */
+.skeletonImageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skeletonImage {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Контент скелетона */
+.skeletonContent {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @media (width <= 768px) {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  @media (width <= 480px) {
+    padding: 12px;
+    gap: 8px;
+  }
+}
+
+/* Элементы скелетона */
+.skeletonCategory {
+  width: 80px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+
+  @media (width <= 480px) {
+    width: 70px;
+    height: 20px;
+  }
+}
+
+.skeletonTitle {
+  width: 100%;
+  height: 20px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+
+  @media (width <= 480px) {
+    height: 18px;
+  }
+}
+
+.skeletonTitleShort {
+  width: 60%;
+  height: 20px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+
+  @media (width <= 480px) {
+    height: 18px;
+  }
+}
+
+.skeletonBrand {
+  width: 40%;
+  height: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+
+  @media (width <= 480px) {
+    height: 14px;
+  }
+}
+
+.skeletonDescription {
+  width: 100%;
+  height: 14px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+
+  @media (width <= 480px) {
+    height: 12px;
+  }
+}
+
+.skeletonDescriptionShort {
+  width: 70%;
+  height: 14px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+
+  @media (width <= 480px) {
+    height: 12px;
+  }
+}
+
+.skeletonRating {
+  width: 120px;
+  height: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  margin-top: auto;
+
+  @media (width <= 480px) {
+    width: 100px;
+    height: 14px;
+  }
+}
+
+/* Футер скелетона */
+.skeletonFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  gap: 12px;
+
+  @media (width <= 480px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 12px;
+  }
+}
+
+.skeletonPriceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skeletonPrice {
+  width: 80px;
+  height: 24px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+
+  @media (width <= 480px) {
+    width: 70px;
+    height: 22px;
+  }
+}
+
+.skeletonButton {
+  width: 100px;
+  height: 40px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+
+  @media (width <= 480px) {
+    width: 100%;
+    height: 44px;
+  }
+}
+
+/* Анимации */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.95;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Улучшения для доступности */
+@media (prefers-reduced-motion: reduce) {
+  .skeletonCard,
+  .skeletonImage,
+  .skeletonCategory,
+  .skeletonTitle,
+  .skeletonTitleShort,
+  .skeletonBrand,
+  .skeletonDescription,
+  .skeletonDescriptionShort,
+  .skeletonRating,
+  .skeletonPrice,
+  .skeletonButton {
+    animation: none;
+    background: #f0f0f0;
+  }
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  .skeletonCard {
+    background: #2d2d2d;
+    border-color: #404040;
+  }
+
+  .skeletonImageContainer {
+    background-color: #404040;
+  }
+
+  .skeletonImage,
+  .skeletonCategory,
+  .skeletonTitle,
+  .skeletonTitleShort,
+  .skeletonBrand,
+  .skeletonDescription,
+  .skeletonDescriptionShort,
+  .skeletonRating,
+  .skeletonPrice,
+  .skeletonButton {
+    background: linear-gradient(90deg, #404040 25%, #505050 50%, #404040 75%);
+    background-size: 200% 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skeletonImage,
+    .skeletonCategory,
+    .skeletonTitle,
+    .skeletonTitleShort,
+    .skeletonBrand,
+    .skeletonDescription,
+    .skeletonDescriptionShort,
+    .skeletonRating,
+    .skeletonPrice,
+    .skeletonButton {
+      background: #404040;
+    }
+  }
+}

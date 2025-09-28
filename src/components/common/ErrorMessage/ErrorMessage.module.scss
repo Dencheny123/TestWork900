@@ -1,0 +1,275 @@
+/**
+ * Стили для компонента отображения ошибок
+ * Различные типы ошибок с соответствующими цветами и иконками
+ */
+
+.container {
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  border: 1px solid;
+  animation: slideIn 0.3s ease-out;
+
+  @media (width <= 480px) {
+    padding: 12px;
+    margin: 12px 0;
+  }
+}
+
+/* Анимация появления */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Контент ошибки */
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  @media (width <= 480px) {
+    gap: 8px;
+  }
+}
+
+/* Иконка */
+.icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+
+  @media (width <= 480px) {
+    font-size: 1.1rem;
+    margin-top: 1px;
+  }
+}
+
+/* Текстовая часть */
+.text {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+  line-height: 1.3;
+
+  @media (width <= 480px) {
+    font-size: 0.9rem;
+  }
+}
+
+.message {
+  font-size: 0.875rem;
+  margin: 0;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+
+  @media (width <= 480px) {
+    font-size: 0.8rem;
+  }
+}
+
+/* Действия */
+.actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+
+  @media (width <= 480px) {
+    margin-top: 8px;
+  }
+}
+
+.retryButton {
+  background: transparent;
+  border: 1px solid currentcolor;
+  color: inherit;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgb(255 255 255 / 10%);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (width <= 480px) {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Типы ошибок */
+
+/* Ошибка (красный) */
+.error {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+
+  .retryButton {
+    border-color: #721c24;
+    color: #721c24;
+
+    &:hover {
+      background: #721c24;
+      color: white;
+    }
+  }
+}
+
+/* Предупреждение (желтый) */
+.warning {
+  background: #fff3cd;
+  border-color: #ffeaa7;
+  color: #856404;
+
+  .retryButton {
+    border-color: #856404;
+    color: #856404;
+
+    &:hover {
+      background: #856404;
+      color: white;
+    }
+  }
+}
+
+/* Информация (синий) */
+.info {
+  background: #d1ecf1;
+  border-color: #bee5eb;
+  color: #0c5460;
+
+  .retryButton {
+    border-color: #0c5460;
+    color: #0c5460;
+
+    &:hover {
+      background: #0c5460;
+      color: white;
+    }
+  }
+}
+
+/* Успех (зеленый) */
+.success {
+  background: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+
+  .retryButton {
+    border-color: #155724;
+    color: #155724;
+
+    &:hover {
+      background: #155724;
+      color: white;
+    }
+  }
+}
+
+/* Варианты отображения */
+
+/* Без иконки */
+.containerNoIcon {
+  .content {
+    align-items: center;
+  }
+}
+
+/* Компактный вариант */
+.containerCompact {
+  padding: 8px 12px;
+  margin: 8px 0;
+
+  .content {
+    gap: 8px;
+  }
+
+  .icon {
+    font-size: 1rem;
+    margin-top: 0;
+  }
+
+  .title {
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+  }
+
+  .message {
+    font-size: 0.8rem;
+  }
+
+  @media (width <= 480px) {
+    padding: 6px 10px;
+
+    .icon {
+      font-size: 0.9rem;
+    }
+
+    .title {
+      font-size: 0.85rem;
+    }
+
+    .message {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+/* Улучшения для доступности */
+@media (prefers-reduced-motion: reduce) {
+  .container {
+    animation: none;
+  }
+
+  .retryButton:hover {
+    transform: none;
+  }
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  .error {
+    background: #2d1b1f;
+    border-color: #5c2a35;
+    color: #f8d7da;
+  }
+
+  .warning {
+    background: #2d2a1f;
+    border-color: #5c552a;
+    color: #fff3cd;
+  }
+
+  .info {
+    background: #1b2d2d;
+    border-color: #2a5c5c;
+    color: #d1ecf1;
+  }
+
+  .success {
+    background: #1b2d1f;
+    border-color: #2a5c35;
+    color: #d4edda;
+  }
+}
