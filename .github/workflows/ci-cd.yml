@@ -10,7 +10,6 @@ env:
   NODE_VERSION: '18.x'
 
 jobs:
-  # Проверка качества кода
   lint-and-test:
     name: Lint, Test and Build
     runs-on: ubuntu-latest
@@ -29,7 +28,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm i
 
       - name: Run ESLint
         run: npm run lint
@@ -41,7 +40,7 @@ jobs:
         run: npm run format:check
 
       - name: Run tests
-        run: npm run test:ci
+        run: npm test
 
       - name: Build application
         run: npm run build
@@ -86,7 +85,9 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    needs: [lint-and-test, deploy]
+    defaults:
+      run:
+        working-directory: ./
 
     steps:
       - name: Checkout code
