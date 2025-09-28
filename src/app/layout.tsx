@@ -49,7 +49,6 @@ export const metadata: Metadata = {
     description: 'Тестовое приложение для работы с DummyJSON API',
     images: ['/icon-512.png'],
   },
-  manifest: '/site.webmanifest',
 };
 
 export const viewport: Viewport = {

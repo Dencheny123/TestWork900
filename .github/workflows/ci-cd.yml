@@ -1,10 +1,7 @@
 name: CI/CD Pipeline
-
+# Выполняется только при нажатии изменить 
 on:
-  push:
-    branches: [main, dev]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
 
 env:
   NODE_VERSION: '18.x'
