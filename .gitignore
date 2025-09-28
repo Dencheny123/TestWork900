@@ -40,6 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 CI_CD_SETUP.md
+TESTING_GUIDE.md
 
 *storybook.log
 storybook-static
