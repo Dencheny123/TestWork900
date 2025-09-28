@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.scss';
 import Header from '@/components/layout/Header/Header';
 import Footer from '@/components/layout/Footer/Footer';
+import Head from 'next/head';
 
 // Оптимизация загрузки шрифтов с предварительной загрузкой
 const inter = Inter({
@@ -13,6 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://testwork900.vercel.app'),
   title: {
     default: 'DummyStore - Тестовое приложение',
     template: '%s | DummyStore',
@@ -34,9 +36,9 @@ export const metadata: Metadata = {
     siteName: 'DummyStore',
     images: [
       {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
+        url: '/icon-512.png',
+        width: 512,
+        height: 512,
         alt: 'DummyStore - Тестовое приложение',
       },
     ],
@@ -44,15 +46,10 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'DummyStore - Тестовое приложение',
-    description:
-      'Тестовое приложение для работы с DummyJSON API. Просмотр товаров, авторизация пользователей, управление корзиной.',
+    description: 'Тестовое приложение для работы с DummyJSON API',
+    images: ['/icon-512.png'],
   },
   manifest: '/site.webmanifest',
-  // Оптимизация для поисковых систем
-  verification: {
-    google: 'ваш-google-verification-code',
-    yandex: 'ваш-yandex-verification-code',
-  },
 };
 
 export const viewport: Viewport = {
@@ -71,11 +68,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className={inter.variable}>
-      <head>
-        {/* Предварительная загрузка критических ресурсов */}
+      <Head>
         <link rel="preconnect" href="https://dummyjson.com" />
         <link rel="dns-prefetch" href="https://dummyjson.com" />
-      </head>
+      </Head>
       <body className="antialiased">
         <div className="app-layout">
           <Header />

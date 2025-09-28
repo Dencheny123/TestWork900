@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://vsmtech.ru/sitemap.xml
+Sitemap: https://test-work900-ykab-a8v50r765-dencheny123s-projects.vercel.app/sitemap.xml
 
 # Disallow crawling of admin and API routes
 Disallow: /api/

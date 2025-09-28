@@ -1,31 +1,21 @@
 /**
- * Middleware для защиты роутов и работы с JWT авторизацией
- * Обеспечивает проверку аутентификации для защищенных страниц
+ * Middleware для работы с JWT авторизацией
+ * Защищает только страницу /login от авторизованных пользователей
+ * Все остальные роуты доступны без ограничений
  */
 
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 /**
- * Конфигурация middleware - защищенные роуты
+ * Конфигурация middleware - только страница логина
  */
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public folder
-     * - login page
-     */
-    '/((?!api|_next/static|_next/image|favicon.ico|login).*)',
-  ],
+  matcher: ['/login'],
 };
 
 /**
- * Middleware для проверки JWT токена и защиты роутов
+ * Middleware для редиректа авторизованных пользователей с /login на главную
  * @param request - Входящий запрос
  * @returns NextResponse с редиректом или продолжением запроса
  */
@@ -36,25 +26,6 @@ export function middleware(request: NextRequest) {
 
   // Получаем путь запроса
   const { pathname } = request.nextUrl;
-
-  // Разрешенные публичные пути
-  const publicPaths = [
-    '/login',
-    '/',
-    '/robots.txt',
-    '/sitemap.xml',
-    '/site.webmanifest',
-  ];
-  const isPublicPath = publicPaths.includes(pathname);
-
-  // Если пользователь не аутентифицирован и пытается получить доступ к защищенному роуту
-  if (!isAuthenticated && !isPublicPath) {
-    // Создаем URL для редиректа на страницу логина
-    const loginUrl = new URL('/login', request.url);
-    // Добавляем параметр для редиректа обратно после авторизации
-    loginUrl.searchParams.set('redirect', pathname);
-    return NextResponse.redirect(loginUrl);
-  }
 
   // Если пользователь аутентифицирован и пытается получить доступ к странице логина
   if (isAuthenticated && pathname === '/login') {

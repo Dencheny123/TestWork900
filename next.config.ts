@@ -30,12 +30,16 @@ const nextConfig: import('next').NextConfig = {
     minimumCacheTTL: 86400, // 1 день
   },
   
-  // Headers для оптимизации загрузки
+  // Headers для оптимизации загрузки и SEO
   async headers() {
     return [
       {
         source: '/(.*)',
         headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow',
+          },
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
